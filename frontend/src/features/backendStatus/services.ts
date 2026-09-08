@@ -1,4 +1,4 @@
-const API_BASE_URL: string = "http://localhost:8000";
+const API_BASE_URL: string = import.meta.env.VITE_API_BASE_URL;
 
 export async function checkBackend(): Promise<{ status: string }> {
     const response: Response = await fetch(`${API_BASE_URL}/health`);
