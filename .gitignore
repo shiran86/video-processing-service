@@ -2,4 +2,44 @@
 __pycache__/
 *.pyc
 node_modules/
+
+# .NET build output
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+**/packages/
+*.nupkg
+*.snupkg
+
+# ASP.NET Core local configuration
+appsettings.Development.json
+appsettings.Local.json
+
+# Environment / secrets
 .env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Test results
+TestResults/
+*.trx
+
+# Code coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# OS files
+.DS_Store
+Thumbs.db
