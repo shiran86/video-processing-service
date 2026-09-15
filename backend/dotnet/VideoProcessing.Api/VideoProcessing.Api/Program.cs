@@ -3,7 +3,17 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowCredentials()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -12,9 +22,13 @@ builder.Services.AddOpenApi();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+    //options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
 })
-    .AddCookie().AddOpenIdConnect(options =>
+    .AddCookie((options) =>
+    {
+        options.Cookie.SameSite = SameSiteMode.None;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    }).AddOpenIdConnect(options =>
     {
         options.Authority = builder.Configuration["OpenIDConnectSettings:Authority"]; // Cognito User Pool 
         options.ClientId = builder.Configuration["OpenIDConnectSettings:ClientId"];
@@ -24,6 +38,7 @@ builder.Services.AddAuthentication(options =>
         options.Scope.Clear();
         options.Scope.Add("openid");
         options.Scope.Add("email");
+
         //options.SaveTokens = true;
     }); ;
 
@@ -36,6 +51,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("Frontend");
 app.UseAuthentication();
 app.UseAuthorization();
 
