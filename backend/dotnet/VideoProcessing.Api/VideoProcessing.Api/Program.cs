@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using VideoProcessing.Application.Videos;
 using VideoProcessing.Application.Videos.GetVideo;
 using VideoProcessing.Infrastructure.Repositories;
+using VideoProcessing.Infrastructure.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
@@ -24,6 +25,9 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<IVideoRepository, VideoRepository>();
 builder.Services.AddScoped<IGetVideoQueryHandler, GetVideoQueryHandler>();
+builder.Services.AddScoped<IFileStorageService, S3FileStorageService>();
+
+
 
 builder.Services.AddAuthentication(options =>
 {

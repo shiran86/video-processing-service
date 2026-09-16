@@ -8,14 +8,20 @@ namespace VideoProcessing.Application.Videos.GetVideo
     public class GetVideoQueryHandler : IGetVideoQueryHandler
     {
         private readonly IVideoRepository _videoRepository;
-        public GetVideoQueryHandler(IVideoRepository videoRepository)
+
+        private readonly IFileStorageService _fileStorageService;
+
+        public GetVideoQueryHandler(IVideoRepository videoRepository, IFileStorageService fileStorageService)
         {
             _videoRepository = videoRepository;
+            _fileStorageService = fileStorageService;
         }
 
         public GetVideoResponse Handle(GetVideoQuery query)
         {
             var videoResponse = _videoRepository.GetVideoById(query.VideoId);
+            Version preSignedUrl = _fileStorageService.GetPresignedUrl();
+
             return new GetVideoResponse
             {
                 Id = videoResponse.Id,
