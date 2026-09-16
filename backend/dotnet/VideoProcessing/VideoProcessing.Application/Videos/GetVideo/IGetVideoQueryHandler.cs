@@ -4,6 +4,6 @@ namespace VideoProcessing.Application.Videos.GetVideo
 {
     public interface IGetVideoQueryHandler
     {
-        GetVideoResponse Handle(GetVideoQuery query);
+        Task<GetVideoResponse> Handle(GetVideoQuery query);
     }
 }

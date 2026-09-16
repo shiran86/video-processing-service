@@ -1,3 +1,5 @@
+using Amazon;
+using Amazon.S3;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using VideoProcessing.Application.Videos;
@@ -26,7 +28,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<IVideoRepository, VideoRepository>();
 builder.Services.AddScoped<IGetVideoQueryHandler, GetVideoQueryHandler>();
 builder.Services.AddScoped<IFileStorageService, S3FileStorageService>();
-
+builder.Services.AddScoped<IAmazonS3>(_ => new AmazonS3Client(RegionEndpoint.USEast1));
 
 
 builder.Services.AddAuthentication(options =>

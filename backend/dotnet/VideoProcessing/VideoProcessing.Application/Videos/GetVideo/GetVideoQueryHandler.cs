@@ -17,16 +17,17 @@ namespace VideoProcessing.Application.Videos.GetVideo
             _fileStorageService = fileStorageService;
         }
 
-        public GetVideoResponse Handle(GetVideoQuery query)
+        public async Task<GetVideoResponse> Handle(GetVideoQuery query)
         {
-            var videoResponse = _videoRepository.GetVideoById(query.VideoId);
-            Version preSignedUrl = _fileStorageService.GetPresignedUrl();
+            var videoResponse = await _videoRepository.GetVideoByIdAsync(query.VideoId);
+            string preSignedUrl = await _fileStorageService.GetPresignedUrl(videoResponse.S3Key);
 
             return new GetVideoResponse
             {
                 Id = videoResponse.Id,
                 Name = videoResponse.Name,
                 S3Key = videoResponse.S3Key,
+                PreSignedUrl = preSignedUrl,
             };
         }
     }

@@ -13,5 +13,7 @@ namespace VideoProcessing.Application.Videos.GetVideo
 
         public string S3Key { get; set; } = string.Empty;
 
+        public string PreSignedUrl { get; set; } = string.Empty;
+
     }
 }

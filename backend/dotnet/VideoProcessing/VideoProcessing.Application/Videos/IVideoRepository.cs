@@ -4,6 +4,6 @@ namespace VideoProcessing.Application.Videos
 {
     public interface IVideoRepository
     {
-        Video GetVideoById (int id);
+        Task<Video> GetVideoByIdAsync(int id);
     }
 }

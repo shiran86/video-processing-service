@@ -6,13 +6,13 @@ namespace VideoProcessing.Infrastructure.Repositories
 {
     public class VideoRepository : IVideoRepository
     {
-        public Video GetVideoById(int id)
+        public async Task<Video> GetVideoByIdAsync(int id)
         {
             return new Video
             {
                 Id = id,
                 Name = "Test Video",
-                S3Key = $"videos/{id}/original.mp4",
+                S3Key = $"videos/{id}/video.mp4",
                 Status = VideoStatus.Ready
             };
         }
