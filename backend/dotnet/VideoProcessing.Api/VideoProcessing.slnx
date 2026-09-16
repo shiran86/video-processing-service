@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="InfraStructure/VideoProcessing.Infrastructure.csproj" />
+  <Project Path="VideoProcessing.Api/VideoProcessing.Api.csproj" />
+  <Project Path="VideoProcessing.Application/VideoProcessing.Application.csproj" />
+  <Project Path="VideoProcessing.Domain/VideoProcessing.Domain.csproj" />
+</Solution>
