@@ -1,22 +1,15 @@
 import './App.css'
-import { AuthStatus } from './features/auth/controllers/AuthStatus'
-import { LoginButton } from './features/auth/controllers/LoginButton'
+import { AuthGuard } from './features/auth/components/AuthGuard/AuthGuard'
+import { LoginView } from './features/auth/components/LoginView'
+import { UserView } from './features/auth/controllers/UserView'
+import { VideoPage } from './features/videos/videoPage/VideoPage'
 
 function App() {
-
   return (
-    <>
-      <section id="center">
-
-        <div>
-          <h1>Get started</h1>
-          <LoginButton />
-        </div>
-
-        <AuthStatus />
-      </section>
-
-    </>
+    <AuthGuard fallback={<LoginView />}>
+      <UserView />
+      <VideoPage />
+    </AuthGuard>
   )
 }
 
