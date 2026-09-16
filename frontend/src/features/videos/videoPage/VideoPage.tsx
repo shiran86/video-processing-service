@@ -7,7 +7,11 @@ export const VideoPage = () => {
   const [video, setVideo] = useState<Video | null>(null)
 
   useEffect(() => {
-    getVideo().then(setVideo)
+    const fetchVideo = async() => {
+      const video = await getVideo();
+      setVideo(video)
+    }
+    fetchVideo()
   }, [])
 
   if (!video) {

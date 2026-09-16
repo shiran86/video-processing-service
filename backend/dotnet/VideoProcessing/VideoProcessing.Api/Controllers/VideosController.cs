@@ -22,10 +22,10 @@ namespace VideoProcessing.Api.Controllers
 
         [Authorize]
         [HttpGet("{videoId}")]
-        public IActionResult GetVideo(int videoId)
+        public async Task<IActionResult> GetVideo(int videoId)
         {
             var query = new GetVideoQuery(videoId);
-            var video = _getVideoQueryHandler.Handle(query);
+            var video = await _getVideoQueryHandler.Handle(query);
             return Ok(video);
         }
     }
