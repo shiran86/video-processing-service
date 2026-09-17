@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '../../config'
-import type { Video } from './components/videoView/types'
+import type { Video } from './types'
 
 export const getVideo = async (id: number): Promise<Video> => {
   const response = await fetch(`${API_BASE_URL}/videos/${id}`, { credentials: 'include' })
