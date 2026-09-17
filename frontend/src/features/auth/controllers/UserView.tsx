@@ -1,5 +1,6 @@
 import { useCurrentUser } from "../useCurrentUser";
 import { LogoutButton } from "./LogoutButton";
+import styles from "../../../styles.module.scss";
 
 export const UserView = () => {
     const { data: currentUser } = useCurrentUser();
@@ -8,7 +9,7 @@ export const UserView = () => {
         return null;
     }
 
-    return <div>
+    return <div className={styles.userViewContent}>
         <div>Logged in as {currentUser.email}</div>
         <LogoutButton />
     </div>;
