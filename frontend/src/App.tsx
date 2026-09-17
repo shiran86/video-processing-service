@@ -2,7 +2,7 @@ import './App.css'
 import { AuthGuard } from './features/auth/components/AuthGuard/AuthGuard'
 import { LoginView } from './features/auth/components/LoginView'
 import { UserView } from './features/auth/controllers/UserView'
-import { VideoPage } from './features/videos/videoPage/VideoPage'
+import { VideoPage } from './pages/VideoPage'
 import styles from './styles.module.scss';
 
 function App() {
