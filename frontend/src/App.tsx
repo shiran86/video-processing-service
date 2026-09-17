@@ -8,14 +8,12 @@ import styles from './styles.module.scss';
 function App() {
   return (
     <AuthGuard fallback={<LoginView />}>
-      <div className={styles.authenticatedRoot}>
+      <section className={styles.appContainer}>
         <UserView />
-        <section className={styles.appContainer}>
-          <div className={styles.authenticatedLayout}>
-            <VideoPage />
-          </div>
-        </section>
-      </div>
+        <div className={styles.authenticatedLayout}>
+          <VideoPage />
+        </div>
+      </section>
     </AuthGuard>
   )
 }
