@@ -7,16 +7,16 @@ import styles from './styles.module.scss';
 
 function App() {
   return (
-    <section className={styles.appContainer}>
-      <AuthGuard fallback={<LoginView />}>
-        <div className={styles.authenticatedLayout}>
-          <div className={styles.userView}>
-            <UserView />
+    <AuthGuard fallback={<LoginView />}>
+      <div className={styles.authenticatedRoot}>
+        <UserView />
+        <section className={styles.appContainer}>
+          <div className={styles.authenticatedLayout}>
+            <VideoPage />
           </div>
-          <VideoPage />
-        </div>
-      </AuthGuard>
-    </section>
+        </section>
+      </div>
+    </AuthGuard>
   )
 }
 
