@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { Clips } from '../features/clip/clips/Clips'
+import { ClipEditor } from '../features/clip/ClipEditor'
 import { VideoPlayer } from '../features/videos/components/videoPlayer/VideoPlayer'
 import { useVideo } from '../features/videos/useVideo'
 import type { CreateClipSegmentRequest } from '../features/clip/types'
@@ -8,13 +7,17 @@ import { useCreateClip } from '../features/clip/useCreateClip'
 const VIDEO_ID = 123
 
 export const VideoPage = () => {
-  const { data: video, isLoading, error } = useVideo(VIDEO_ID);
-  const createClipMutation = useCreateClip();
+  const { data: video, isLoading, error } = useVideo(VIDEO_ID)
+  const createClipMutation = useCreateClip()
 
-  const [clips] = useState<CreateClipSegmentRequest[]>([
-    { startTime: 2, endTime: 3 },
-    { startTime: 7, endTime: 8 },
-  ])
+  const handleUpload = (segments: CreateClipSegmentRequest[]) => {
+    createClipMutation.mutate({
+      videoId: VIDEO_ID,
+      request: {
+        segments,
+      },
+    })
+  }
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -37,7 +40,7 @@ export const VideoPage = () => {
         controls
       />
 
-      <Clips clips={clips} onUpload={createClipMutation.mutate} />
+      <ClipEditor onUpload={handleUpload} />
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../../config'
 import type { CreateClipRequest } from './types'
 
 export const createClip = async (
@@ -5,7 +6,7 @@ export const createClip = async (
   request: CreateClipRequest
 ) => {
   const response = await fetch(
-    `/api/v1/videos/${videoId}/clips`,
+    `${API_BASE_URL}/videos/${videoId}/clips`,
     {
       method: 'POST',
       credentials: 'include',
