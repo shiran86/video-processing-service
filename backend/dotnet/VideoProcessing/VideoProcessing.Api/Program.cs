@@ -2,6 +2,7 @@ using Amazon;
 using Amazon.S3;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using VideoProcessing.Application;
 using VideoProcessing.Application.Videos;
 using VideoProcessing.Application.Videos.GetVideo;
 using VideoProcessing.Infrastructure.Repositories;

@@ -6,7 +6,7 @@ namespace VideoProcessing.Api.Controllers
 {
     [ApiController]
     [Route("api/v1/videos")]
-    public class VideosController : Controller
+    public class VideosController : ControllerBase
     {
         private readonly IGetVideoQueryHandler _getVideoQueryHandler;
         public VideosController(IGetVideoQueryHandler getVideoQueryHandler) {
@@ -24,6 +24,7 @@ namespace VideoProcessing.Api.Controllers
         [HttpGet("{videoId}")]
         public async Task<IActionResult> GetVideo(int videoId)
         {
+            //var usrId = HttpContext.User.Identity;// TODO: add check that user belongs to the video
             var query = new GetVideoQuery(videoId);
             var video = await _getVideoQueryHandler.Handle(query);
             return Ok(video);
