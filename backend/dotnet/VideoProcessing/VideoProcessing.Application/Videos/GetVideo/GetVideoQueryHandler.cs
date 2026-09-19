@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using VideoProcessing.Application.Storage;
 using VideoProcessing.Domain.Entities;
 
 namespace VideoProcessing.Application.Videos.GetVideo

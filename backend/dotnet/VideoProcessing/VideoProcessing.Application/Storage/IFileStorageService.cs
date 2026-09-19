@@ -1,4 +1,4 @@
-﻿namespace VideoProcessing.Application
+﻿namespace VideoProcessing.Application.Storage
 {
     public interface IFileStorageService
     {

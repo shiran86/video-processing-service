@@ -3,7 +3,7 @@ import type { CreateClipSegmentRequest } from './types'
 import { Segments } from './clips/Segments'
 
 type ClipEditorProps = {
-  onUpload: (segments: CreateClipSegmentRequest[]) => void
+  onUpload: (segments: CreateClipSegmentRequest[]) => Promise<void>
 }
 
 export const ClipEditor = ({ onUpload }: ClipEditorProps) => {
@@ -18,8 +18,8 @@ export const ClipEditor = ({ onUpload }: ClipEditorProps) => {
 
       <button
         type="button"
-        onClick={() => {
-          onUpload(segments)
+        onClick={async () => {
+          await onUpload(segments)
           setSegments([])
         }}
       >

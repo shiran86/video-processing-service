@@ -1,6 +1,6 @@
 ﻿using Amazon.S3;
 using Amazon.S3.Model;
-using VideoProcessing.Application;
+using VideoProcessing.Application.Storage;
 
 namespace VideoProcessing.Infrastructure.Storage
 {

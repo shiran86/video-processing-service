@@ -3,4 +3,5 @@
   <Project Path="VideoProcessing.Api/VideoProcessing.Api.csproj" />
   <Project Path="VideoProcessing.Application/VideoProcessing.Application.csproj" />
   <Project Path="VideoProcessing.Domain/VideoProcessing.Domain.csproj" />
+  <Project Path="VideoProcessing.Worker/VideoProcessing.Worker.csproj" Id="5db969e1-7f2f-4da7-8b60-4223d77646c5" />
 </Solution>

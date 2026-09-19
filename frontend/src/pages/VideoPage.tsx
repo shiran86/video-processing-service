@@ -10,8 +10,8 @@ export const VideoPage = () => {
   const { data: video, isLoading, error } = useVideo(VIDEO_ID)
   const createClipMutation = useCreateClip()
 
-  const handleUpload = (segments: CreateClipSegmentRequest[]) => {
-    createClipMutation.mutate({
+  const handleUpload = async (segments: CreateClipSegmentRequest[]) => {
+    await createClipMutation.mutateAsync({
       videoId: VIDEO_ID,
       request: {
         segments,

@@ -1,14 +1,18 @@
-﻿namespace VideoProcessing.Application.Clips.CreateClips
+﻿using VideoProcessing.Application.Messaging;
+
+namespace VideoProcessing.Application.Clips.CreateClips
 {
     public class CreateClipCommandHandler : ICreateClipCommandHandler
     {
-        public CreateClipCommandHandler()
+        private readonly IClipProcessingQueue _clipProcessingQueue;
+        public CreateClipCommandHandler(IClipProcessingQueue clipProcessingQueue)
         {
+            _clipProcessingQueue = clipProcessingQueue;
         }
 
-        public Task<CreateClipResponse> Handle(CreateClipCommand command)
+        public Task Handle(CreateClipCommand command)
         {
-            throw new NotImplementedException();
+           return _clipProcessingQueue.EnqueueAsync(command);
         }
     }
 }

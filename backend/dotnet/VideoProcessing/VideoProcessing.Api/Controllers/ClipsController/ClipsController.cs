@@ -31,7 +31,7 @@ namespace VideoProcessing.Api.Controllers.ClipsController
            })
            .ToList()
             };
-            var res = await _createClipsCommandHandler.Handle(command);
+            await _createClipsCommandHandler.Handle(command);
             return Ok();
         }
     }

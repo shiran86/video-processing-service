@@ -1,11 +1,14 @@
 using Amazon;
 using Amazon.S3;
+using Amazon.SQS;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using VideoProcessing.Application;
 using VideoProcessing.Application.Clips.CreateClips;
+using VideoProcessing.Application.Messaging;
+using VideoProcessing.Application.Storage;
 using VideoProcessing.Application.Videos;
 using VideoProcessing.Application.Videos.GetVideo;
+using VideoProcessing.Infrastructure.Messaging;
 using VideoProcessing.Infrastructure.Repositories;
 using VideoProcessing.Infrastructure.Storage;
 
@@ -31,6 +34,10 @@ builder.Services.AddScoped<IVideoRepository, VideoRepository>();
 builder.Services.AddScoped<IGetVideoQueryHandler, GetVideoQueryHandler>();
 builder.Services.AddScoped<IFileStorageService, S3FileStorageService>();
 builder.Services.AddScoped<IAmazonS3>(_ => new AmazonS3Client(RegionEndpoint.USEast1));
+builder.Services.AddScoped<IAmazonSQS>(_ => new AmazonSQSClient(RegionEndpoint.USEast1));
+
+builder.Services.AddScoped<IClipProcessingQueue, SqsClipProcessingMessageQueue>();
+
 
 builder.Services.AddScoped<ICreateClipCommandHandler, CreateClipCommandHandler>();
 

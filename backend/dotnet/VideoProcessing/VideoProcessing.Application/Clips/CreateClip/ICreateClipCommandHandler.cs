@@ -6,6 +6,6 @@ namespace VideoProcessing.Application.Clips.CreateClips
 {
     public interface ICreateClipCommandHandler
     {
-       public Task<CreateClipResponse> Handle(CreateClipCommand command);
+       public Task Handle(CreateClipCommand command);
     }
 }
